@@ -1,6 +1,9 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CedarCopilot } from 'cedar-os';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <CedarCopilot
+          llmProvider={{
+            provider: 'openai',
+            apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+          }}>
+          {children}
+        </CedarCopilot>
       </body>
     </html>
   );

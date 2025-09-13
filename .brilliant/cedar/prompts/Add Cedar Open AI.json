@@ -1,0 +1,26 @@
+{
+    "category": "cedar",
+    "title": "Add Cedar Open AI",
+    "description": "Integrate Cedar with an application via OpenAI",
+    "message": "Modify the following code to integrate the CedarCopilot component into the user's application: \n\n```\n{{file:{{arg:ApplicationRootPath}}}}\n```\n\nThen, separately provide a terminal command to build and test that this application works, to be run in a single terminal in sequence: npm run dev on a nonstandard port, then a curl command testing that the port works.\n\nDo not provide advice or suggestions. DO NOT return more than two code blocks in your response: just the modified code, then the test command.",
+    "insertionArgs": [
+        {
+            "method": "write to file",
+            "typedArgs": {
+                "path": "{{arg:ApplicationRootPath}}",
+                "overwrite": true,
+                "show": true
+            },
+            "targetBlock": 1
+        },
+        {
+            "method": "run in terminal",
+            "typedArgs": {
+                "newTerminal": false,
+                "directory": "cedar-app/"
+            },
+            "targetBlock": "2"
+        }
+    ],
+    "system": "Always return the entire file contents with CedarCopilot installed. Use your best judgement to determine the highest point in the application's hierarchy to wrap with the CedarCopilot components.\n\nThis is an example of how to install CedarCopilot into a user's application. Make sure to always import and use the CedarCopilot component:\n\n```\n\"use client\";\n\nimport { CedarCopilot } from 'cedar-os';\n\nfunction App() {\n\treturn (\n\t\t<CedarCopilot\n\t\t\tllmProvider={{\n\t\t\t\tprovider: 'openai',\n\t\t\t\tapiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,\n\t\t\t}}>\n\t\t\t<YourApp />\n\t\t</CedarCopilot>\n\t);\n}\n```"
+}
